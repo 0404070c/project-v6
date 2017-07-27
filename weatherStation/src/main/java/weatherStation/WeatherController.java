@@ -1,5 +1,7 @@
 package weatherStation;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.http.MediaType;
@@ -26,6 +28,14 @@ public class WeatherController {
 	public Weather weather() {
         return new Weather(stationId, count++, temperature, rain);
     }
+	/*
+	private List<Weather> getWeather() {
 	
+		List<Weather> resources = new ArrayList<>();
+		resources.add(new Weather(stationId, count++, temperature, rain));
+	
+		return resources;
+	}
+	*/
 
 }
