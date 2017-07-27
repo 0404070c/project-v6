@@ -48,5 +48,9 @@ public class Weather {
 	public void setRain(int rain) {
 		this.rain = rain;
 	}
+	
+	public Weather(){
+	}
+	
 
 }
