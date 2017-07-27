@@ -1,16 +1,10 @@
 package weatherStation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -24,17 +18,6 @@ public class WeatherController {
 	private int temperature = 0 + value.nextInt(100);
 	private int rain = 0 + value.nextInt(100);
 
-	
-	/*
-	private List<Weather> getWeather() {
-
-		List<Weather> resources = new ArrayList<>();
-		resources.add(new Weather(stationId, count++, temperature, rain));
-
-
-		return resources;
-	}
-	*/
 	@RequestMapping( 
 			method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE,
