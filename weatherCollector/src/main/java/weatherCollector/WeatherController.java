@@ -14,13 +14,13 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class WeatherController {
 	
-	private Random value = new Random(); 
-	private int count = 1;
+	//private Random value = new Random(); 
+	//private int count = 1;
 	
-	private int stationId = 100000 + value.nextInt(900000);
-	private int temperature = 0 + value.nextInt(100);
-	private int rain = 0 + value.nextInt(100);
-
+	//private int stationId = 100000 + value.nextInt(900000);
+	//private int temperature = 0 + value.nextInt(100);
+	//private int rain = 0 + value.nextInt(100);
+/*
 	@RequestMapping( 
 			method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE,
@@ -29,20 +29,47 @@ public class WeatherController {
 	public Weather weather() {
         return new Weather(stationId, count++, temperature, rain);
     }
-	
+	*/
+	/*
 	@RequestMapping( 
 			method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE,
-            value="/collection"
+            value="/"
             )
-	public Collection collection() {
+	public Weather weather() {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather test = restTemplate.getForObject("http://localhost:8080/", Weather.class);
-		int theStation = test.getStationId();
-	    int theCount = test.getCount();
+		Weather stationOne = restTemplate.getForObject("http://localhost:8080/", Weather.class);
+		
+		int idOne = stationOne.getStationId();
+	    int countOne = stationOne.getCount();
+	    int temperatureOne = stationOne.getTemperature();
+	    int rainOne = stationOne.getRain();
 	    
-		return new Collection(theStation, theCount);
+		return new Weather(idOne, countOne, temperatureOne, rainOne);
 	}
+	*/
+	@RequestMapping( 
+			method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            value="/"
+            )
+	private List<Weather> collectWeather() {
+		RestTemplate restTemplate = new RestTemplate();
+		Weather stationOne = restTemplate.getForObject("http://localhost:8001/", Weather.class);
+		//Weather stationTwo = restTemplate.getForObject("http://localhost:8002/", Weather.class);
+		
+		int idOne = stationOne.getStationId();
+	    int countOne = stationOne.getCount();
+	    int temperatureOne = stationOne.getTemperature();
+	    int rainOne = stationOne.getRain();
+	    
+		List<Weather> collection = new ArrayList<>();
+		collection.add(new Weather(idOne, countOne, temperatureOne, rainOne));
+	
+		return collection;
+	}
+		
+		
 }
 	/*
 	RestTemplate restTemplate = new RestTemplate();
@@ -66,12 +93,12 @@ public class WeatherController {
 	
 	
 	/*
-	private List<Weather> getWeather() {
+	private List<Weather> collectWeather() {
 	
-		List<Weather> resources = new ArrayList<>();
+		List<Weather> collection = new ArrayList<>();
 		resources.add(new Weather(stationId, count++, temperature, rain));
 	
-		return resources;
+		return collection;
 	}
 	*/
 
