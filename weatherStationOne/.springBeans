@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:weatherStationTwo.Application</config>
+		<config>java:weatherStationThree.Application</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

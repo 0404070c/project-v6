@@ -1,4 +1,4 @@
-package weatherStationOne;
+package weatherStationThree;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WeatherController {
 	
-	private int stationId = 1;
+	private int stationId = 3;
 	private Random value = new Random(); 
 	private int count = 1;
 	private int temperature = 0 + value.nextInt(100);

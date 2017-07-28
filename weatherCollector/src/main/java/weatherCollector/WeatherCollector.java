@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 @RestController
-public class WeatherController {
+public class WeatherCollector {
 
 	@RequestMapping( 
 			method = RequestMethod.GET,
