@@ -3,6 +3,7 @@ package weatherApp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,44 +14,58 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class WeatherApp {
 
+
+	
 	@RequestMapping( 
 			method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE,
             value="/"
             )
-	private String test(){
-	RestTemplate restTemplate = new RestTemplate();
-    String getWeather = restTemplate.getForObject("http://localhost:8000/", String.class);
-    return getWeather;
-    
+	public String getWeather(){
+		RestTemplate restTemplate = new RestTemplate();
+    	String getWeather = restTemplate.getForObject("http://localhost:8000/", String.class);
+
+    	return getWeather;
 	}
+	
+	
+	
+
+	
+	/*
+	private String test(){
+	String url = "http://localhost:8000/";
+	RestTemplate restTemplate = new RestTemplate();
+	Weather[] response  = restTemplate.getForObject(url, Weather[].class);
+	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(
+		    new Weather(list));
+	}
+	*/
 	/*
 	private List<Weather> collectWeather() {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationOne = restTemplate.getForObject("http://localhost:8001/", Weather.class);
-		Weather stationTwo = restTemplate.getForObject("http://localhost:8002/", Weather.class);
-		Weather stationThree = restTemplate.getForObject("http://localhost:8003/", Weather.class);
+		Weather allStations = restTemplate.getForObject("http://localhost:8000/", Weather[].class);
 		
-		int idOne = stationOne.getStationId();
-	    int countOne = stationOne.getCount();
-	    int temperatureOne = stationOne.getTemperature();
-	    int rainOne = stationOne.getRain();
+		int idOne = allStations.getStationOneId();
+	    int countOne = allStations.getStationOneCount();
+	    int temperatureOne = allStations.getStationOneTemperature();
+	    int rainOne = allStations.getStationOneRain();
 	    
-	    int idTwo = stationTwo.getStationId();
-	    int countTwo = stationTwo.getCount();
-	    int temperatureTwo = stationTwo.getTemperature();
-	    int rainTwo = stationTwo.getRain();
+	    int idTwo = allStations.getStationTwoId();
+	    int countTwo = allStations.getStationTwoCount();
+	    int temperatureTwo = allStations.getStationTwoTemperature();
+	    int rainTwo = allStations.getStationTwoRain();
 	    
-	    int idThree = stationThree.getStationId();
-	    int countThree = stationThree.getCount();
-	    int temperatureThree = stationThree.getTemperature();
-	    int rainThree = stationThree.getRain();
+	    int idThree = allStations.getStationThreeId();
+	    int countThree = allStations.getStationThreeCount();
+	    int temperatureThree = allStations.getStationThreeTemperature();
+	    int rainThree = allStations.getStationThreeRain();
 	    
 		List<Weather> collection = new ArrayList<>();
-		collection.add(new Weather(idOne, countOne, temperatureOne, rainOne));
-		collection.add(new Weather(idTwo, countTwo, temperatureTwo, rainTwo));
-		collection.add(new Weather(idThree, countThree, temperatureThree, rainThree));
+		collection.add(new Weather(idOne, countOne, temperatureOne, rainOne,idTwo, countTwo, temperatureTwo, rainTwo, idThree, countThree, temperatureThree, rainThree));
 	
+		
+		//System.out.println(idOne);
 		return collection;
 	}
 	*/

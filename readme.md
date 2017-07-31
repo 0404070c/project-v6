@@ -4,11 +4,17 @@ RATHER THAN PUSHING THE DOCKER IMAGE, USE MINIKUBE LOCALLY
 	eval $(minikube docker-env)
 	eval $(minikube docker-env -u) TO UNDO
 BUILD DOCKER IMAGE
-	docker build -t weatherstation:v1 .
+	docker build -t weatherstationone:v1 .
+	docker build -t weatherstationtwo:v1 .
+	docker build -t weatherstationthree:v1 .
 CREATE A DEPLOYMENT
-	kubectl run weatherstation --image=weatherstation:v1 --port=8080
+	kubectl run weatherstationone --image=weatherstationone:v1 --port=8001
+	kubectl run weatherstationtwo --image=weatherstationtwo:v1 --port=8002
+	kubectl run weatherstationthree --image=weatherstationthree:v1 --port=8003
 CREATE A SERVICE
-	kubectl expose deployment weatherstation --type=LoadBalancer
+	kubectl expose deployment weatherstationone --type=LoadBalancer
+	kubectl expose deployment weatherstationtwo --type=LoadBalancer
+	kubectl expose deployment weatherstationthree --type=LoadBalancer
 RUN A SERVICE IN BROWSER
 	minikube service weatherstation	
 SCALE THE DEPLOYMENT
@@ -32,7 +38,4 @@ OTHER COMMANDS
 	minikube ip
 	minikube dashboard
 	kubectl describe deployments producer
-
-
-	mvn clean package spring-boot:run
 

@@ -1,8 +1,5 @@
 package weatherCollector;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,11 +10,36 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class WeatherCollector {
 
+	//STANDARD MESSAGE
+	@RequestMapping( 
+			method = RequestMethod.GET,
+            value="/"
+            )
+	public String message(){
+		return ("This is the collector service");
+	}
+	
+	//CONSUME AND REPORDUCE DATA FROM WEATHER STATION ONE
 	@RequestMapping( 
 			method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE,
-            value="/"
+            value="/stationOne"
             )
+	public Weather weather() {
+		RestTemplate restTemplate = new RestTemplate();
+		Weather stationOne = restTemplate.getForObject("http://localhost:8001/", Weather.class);
+		
+		int idOne = stationOne.getStationId();
+	    int countOne = stationOne.getCount();
+	    int temperatureOne = stationOne.getTemperature();
+	    int rainOne = stationOne.getRain();
+	    
+    	return new Weather(idOne, countOne, temperatureOne, rainOne);
+	}
+	
+	
+	
+	/* OLD WAY, COMBINES JSONS INTO ONE
 	private List<Weather> collectWeather() {
 		RestTemplate restTemplate = new RestTemplate();
 		Weather stationOne = restTemplate.getForObject("http://localhost:8001/", Weather.class);
@@ -46,6 +68,7 @@ public class WeatherCollector {
 	
 		return collection;
 	}
+	*/
 		
 		
 }
