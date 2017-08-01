@@ -1,6 +1,12 @@
 package weatherCollector;
 
+import static org.junit.Assert.assertEquals;
+
+import java.net.ConnectException;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,16 +31,22 @@ public class WeatherCollector {
             produces = MediaType.APPLICATION_JSON_VALUE,
             value="/stationOne"
             )
-	public Weather weather() {
+	public Weather weather() throws Exception {
+		try {
 		RestTemplate restTemplate = new RestTemplate();
 		Weather stationOne = restTemplate.getForObject("http://localhost:8001/", Weather.class);
-		
+
 		int idOne = stationOne.getStationId();
 	    int countOne = stationOne.getCount();
 	    int temperatureOne = stationOne.getTemperature();
 	    int rainOne = stationOne.getRain();
 	    
     	return new Weather(idOne, countOne, temperatureOne, rainOne);
+    	//IF SERVICE NOT AVAILABLE RETURN EMPTY JSON
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    return new Weather(0,0,0,0);
+		} 
 	}
 	
 	
