@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Weather Service</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<h2>List of Weather Stations</h2>
+
+	<table class="data-contacts-js table table-striped" >
+		<tr>
+			<th>Station#</th>
+			<th>Count</th>
+			<th>Temperature(F)</th>
+			<th>Chance of rain(%)</th>
+		</th>
+	</table>
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+
+			$.get("http://localhost:8080/contacts", function(data) {
+
+				$.each(data, function(i, contact) {
+
+					$(".data-contacts-js").append(
+						"<tr><td>" + contact.stationId + "</td>" +
+						"<td>" + contact.count + "</td>" +
+						"<td>" + contact.temperature + "</td>" +
+						"<td>" + contact.rain + "</td></tr>");
+				});
+
+			});
+		});
+	</script>
+</body>
+</html>
