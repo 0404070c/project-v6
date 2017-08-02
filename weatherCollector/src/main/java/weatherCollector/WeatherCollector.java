@@ -23,11 +23,11 @@ public class WeatherCollector {
 	
 	//CONSUME AND REPORDUCE DATA FROM WEATHER STATION ONE
 	@RequestMapping( 
-			method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            value="/stationOne"
-            )
-	public Weather weather() throws Exception {
+		method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        value="/stationOne"
+        )
+	public Weather weatherOne() throws Exception {
 		try {
 		RestTemplate restTemplate = new RestTemplate();
 		Weather stationOne = restTemplate.getForObject("http://localhost:8001/", Weather.class);
@@ -38,6 +38,54 @@ public class WeatherCollector {
 	    int rainOne = stationOne.getRain();
 	    
     	return new Weather(idOne, countOne, temperatureOne, rainOne);
+    	//IF SERVICE NOT AVAILABLE RETURN EMPTY JSON
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    return new Weather(0,0,0,0);
+		} 
+	}
+	
+	//CONSUME AND REPORDUCE DATA FROM WEATHER STATION TWO
+	@RequestMapping( 
+		method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        value="/stationTwo"
+        )
+	public Weather weatherTwo() throws Exception {
+		try {
+		RestTemplate restTemplate = new RestTemplate();
+		Weather stationTwo = restTemplate.getForObject("http://localhost:8002/", Weather.class);
+
+		int idTwo = stationTwo.getStationId();
+	    int countTwo = stationTwo.getCount();
+	    int temperatureTwo = stationTwo.getTemperature();
+	    int rainTwo = stationTwo.getRain();
+	    
+    	return new Weather(idTwo, countTwo, temperatureTwo, rainTwo);
+    	//IF SERVICE NOT AVAILABLE RETURN EMPTY JSON
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    return new Weather(0,0,0,0);
+		} 
+	}
+		
+	//CONSUME AND REPORDUCE DATA FROM WEATHER STATION TWO
+	@RequestMapping( 
+			method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            value="/stationThree"
+            )
+	public Weather weatherThree() throws Exception {
+		try {
+		RestTemplate restTemplate = new RestTemplate();
+		Weather stationThree = restTemplate.getForObject("http://localhost:8003/", Weather.class);
+
+	    int idThree = stationThree.getStationId();
+	    int countThree = stationThree.getCount();
+	    int temperatureThree = stationThree.getTemperature();
+	    int rainThree = stationThree.getRain();
+	    
+    	return new Weather(idThree, countThree, temperatureThree, rainThree);
     	//IF SERVICE NOT AVAILABLE RETURN EMPTY JSON
 		} catch (Exception e) {
 		    e.printStackTrace();
