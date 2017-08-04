@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: weatherapp
+    role: web
+    env: prod
+  name: weatherapp
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30101
+  selector:
+    app: weatherapp
+    role: web
+    env: prod
+  type: NodePort

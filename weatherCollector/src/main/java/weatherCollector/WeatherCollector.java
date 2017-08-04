@@ -27,7 +27,7 @@ public class WeatherCollector {
 	public Weather weatherOne() throws Exception {
 		try {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationOne = restTemplate.getForObject("http://localhost:8001/", Weather.class);
+		Weather stationOne = restTemplate.getForObject("http://192.168.99.100:30001/", Weather.class);
 
 		int idOne = stationOne.getStationId();
 		String availableOne = stationOne.getAvailable();
@@ -52,7 +52,7 @@ public class WeatherCollector {
 	public Weather weatherTwo() throws Exception {
 		try {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationTwo = restTemplate.getForObject("http://localhost:8002/", Weather.class);
+		Weather stationTwo = restTemplate.getForObject("http://192.168.99.100:30002/", Weather.class);
 
 		int idTwo = stationTwo.getStationId();
 		String availableTwo = stationTwo.getAvailable();
@@ -77,7 +77,7 @@ public class WeatherCollector {
 	public Weather weatherThree() throws Exception {
 		try {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationThree = restTemplate.getForObject("http://localhost:8003/", Weather.class);
+		Weather stationThree = restTemplate.getForObject("http://192.168.99.100:30003/", Weather.class);
 
 	    int idThree = stationThree.getStationId();
 	    String availableThree = stationThree.getAvailable();

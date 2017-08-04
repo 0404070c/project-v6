@@ -28,7 +28,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		//GET JSON DATA FROM /WEATHER
-	    $.get("http://localhost:8080/weather", function(data) {
+	    $.get("http://192.168.99.100:30101/weather", function(data) {
 			//ITERATE THROUGH DATA AND DISPLAY
 	        $.each(data, function(i, weather) {
 	            $(".displayWeather").append(

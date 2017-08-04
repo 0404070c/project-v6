@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: weatherstationtwo
+    role: web
+    env: prod
+  name: weatherstationtwo
+spec:
+  ports:
+    - protocol: TCP
+      port: 8002
+      targetPort: 8002
+      nodePort: 30002
+  selector:
+    app: weatherstationtwo
+    role: web
+    env: prod
+  type: NodePort

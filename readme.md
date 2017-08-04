@@ -20,9 +20,9 @@ RUN A SERVICE IN BROWSER
 SCALE THE DEPLOYMENT
 	kubectl scale deployment weatherstation --replicas 20
 DELETE SERVICE
-	kubectl delete service weatherstation
+	kubectl delete service weatherstationone
 DELETE DEPLOYMENT
-	kubectl delete deployment weatherstation
+	kubectl delete deployment weatherstationone
 TO UPDATE THE APP
 	docker build -t producer:v1 .
 	kubectl set image deployment/producer producer=producer:v1
@@ -38,4 +38,14 @@ OTHER COMMANDS
 	minikube ip
 	minikube dashboard
 	kubectl describe deployments producer
+	docker rmi <IMAGE>
+	rocker rm <CONTAINER>
+
+
+	kubectl create -f weatherstationone_deployment.yaml
+	kubectl create -f weatherstationone_service.yaml
+	
+	kubectl create -f weathercollector_deployment.yaml
+	kubectl create -f weathercollector_service.yaml
+
 

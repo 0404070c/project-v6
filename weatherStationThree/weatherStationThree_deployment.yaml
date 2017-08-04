@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: weatherstationthree
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: weatherstationthree
+        env: prod
+        role: web
+    spec:
+      containers:
+      - name: weatherstationthree
+        image: weatherstationthree:v1
+        ports:
+        - containerPort: 8003

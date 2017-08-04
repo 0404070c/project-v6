@@ -31,9 +31,9 @@ public class WeatherApp {
 	//GET JSON DATA FROM WEATHERCOLLECTOR
 	private List<Weather> collectWeather() {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationOne = restTemplate.getForObject("http://localhost:8000/1", Weather.class);
-		Weather stationTwo = restTemplate.getForObject("http://localhost:8000/2", Weather.class);
-		Weather stationThree = restTemplate.getForObject("http://localhost:8000/3", Weather.class);
+		Weather stationOne = restTemplate.getForObject("http://192.168.99.100:30100/1", Weather.class);
+		Weather stationTwo = restTemplate.getForObject("http://192.168.99.100:30100/2", Weather.class);
+		Weather stationThree = restTemplate.getForObject("http://192.168.99.100:30100/3", Weather.class);
 		
 		int idOne = stationOne.getStationId();
 		String availableOne = stationOne.getAvailable();
