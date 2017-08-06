@@ -13,10 +13,13 @@ public class WeatherController {
 	
 	private int stationId = 2;
 	private String available = "Available";
-	private Random value = new Random(); 
 	private int count = 1;
-	private int temperature = 0 + value.nextInt(100);
-	private int rain = 0 + value.nextInt(100);
+	private int temperature = 55;
+	private int rain = 100;
+	
+	//private Random value = new Random(); 
+	//private int temperature = 0 + value.nextInt(100);
+	//private int rain = 0 + value.nextInt(100);
 
 	//GENERATE WEATHER JSON
 	@RequestMapping( 
