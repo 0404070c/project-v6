@@ -8,10 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,31 +29,34 @@ public class WeatherApp {
 	//GET JSON DATA FROM WEATHERCOLLECTOR
 	private List<Weather> collectWeather() {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationOne = restTemplate.getForObject("http://192.168.99.100:30100/1", Weather.class);
-		Weather stationTwo = restTemplate.getForObject("http://192.168.99.100:30100/2", Weather.class);
-		Weather stationThree = restTemplate.getForObject("http://192.168.99.100:30100/3", Weather.class);
+		Weather stationOne = restTemplate.getForObject("http://35.192.230.250:8000/1", Weather.class);
+		Weather stationTwo = restTemplate.getForObject("http://35.192.230.250:8000/2", Weather.class);
+		Weather stationThree = restTemplate.getForObject("http://35.192.230.250:8000/3", Weather.class);
 		
 		int idOne = stationOne.getStationId();
-		String availableOne = stationOne.getAvailable();
-	    int countOne = stationOne.getCount();
+		String statusOne = stationOne.getStatus();
 	    int temperatureOne = stationOne.getTemperature();
 	    int rainOne = stationOne.getRain();
+	    int identitiyOne = stationOne.getIdentity();
+	    int countOne = stationOne.getCount();
 	    
 	    int idTwo = stationTwo.getStationId();
-	    String availableTwo = stationTwo.getAvailable();
-	    int countTwo = stationTwo.getCount();
+	    String statusTwo = stationTwo.getStatus();
 	    int temperatureTwo = stationTwo.getTemperature();
 	    int rainTwo = stationTwo.getRain();
+	    int identityTwo = stationTwo.getIdentity();
+	    int countTwo = stationTwo.getCount();
 	    
 	    int idThree = stationThree.getStationId();
-	    String availableThree = stationThree.getAvailable();
-	    int countThree = stationThree.getCount();
+	    String statusThree = stationThree.getStatus();
 	    int temperatureThree = stationThree.getTemperature();
 	    int rainThree = stationThree.getRain();
+	    int identitiyThree = stationThree.getIdentity();
+	    int countThree = stationThree.getCount();
 	    
-	    Weather weather1 = new Weather(idOne, availableOne, countOne, temperatureOne, rainOne);
-		Weather weather2 = new Weather(idTwo, availableTwo, countTwo, temperatureTwo, rainTwo);
-		Weather weather3 = new Weather(idThree, availableThree, countThree, temperatureThree, rainThree);
+	    Weather weather1 = new Weather(idOne, statusOne, temperatureOne, rainOne, identitiyOne, countOne);
+		Weather weather2 = new Weather(idTwo, statusTwo, temperatureTwo, rainTwo, identityTwo, countTwo);
+		Weather weather3 = new Weather(idThree, statusThree, temperatureThree, rainThree, identitiyThree, countThree);
 	    
 		//ADD COLLECTED DATA TO NEW ARRAYLIST
 		List<Weather> collection = new ArrayList<>();

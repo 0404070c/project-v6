@@ -15,7 +15,7 @@ public class WeatherCollector {
             value="/"
             )
 	public String message(){
-		return ("This is the collector service");
+		return ("This is the collector service.");
 	}
 	
 	//CONSUME AND REPORDUCE DATA FROM WEATHER STATION ONE
@@ -27,19 +27,20 @@ public class WeatherCollector {
 	public Weather weatherOne() throws Exception {
 		try {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationOne = restTemplate.getForObject("http://192.168.99.100:30001/", Weather.class);
+		Weather stationOne = restTemplate.getForObject("http://35.202.53.47:8001/", Weather.class);
 
 		int idOne = stationOne.getStationId();
-		String availableOne = stationOne.getAvailable();
-	    int countOne = stationOne.getCount();
+		String statusOne = stationOne.getStatus();
 	    int temperatureOne = stationOne.getTemperature();
 	    int rainOne = stationOne.getRain();
+	    int identityOne = stationOne.getIdentity();
+	    int countOne = stationOne.getCount();
 	    
-    	return new Weather(idOne, availableOne, countOne, temperatureOne, rainOne);
+    	return new Weather(idOne, statusOne, temperatureOne, rainOne, identityOne, countOne);
     	//IF SERVICE NOT AVAILABLE RETURN EMPTY JSON
 		} catch (Exception e) {
 		    e.printStackTrace();
-		    return new Weather(1,"Unavailable",0,0,0);
+		    return new Weather(1,"Unavailable",0,0,0,0);
 		} 
 	}
 	
@@ -52,22 +53,23 @@ public class WeatherCollector {
 	public Weather weatherTwo() throws Exception {
 		try {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationTwo = restTemplate.getForObject("http://192.168.99.100:30002/", Weather.class);
+		Weather stationTwo = restTemplate.getForObject("http://35.202.127.198:8002/", Weather.class);
 
 		int idTwo = stationTwo.getStationId();
-		String availableTwo = stationTwo.getAvailable();
-	    int countTwo = stationTwo.getCount();
+		String statusTwo = stationTwo.getStatus();
 	    int temperatureTwo = stationTwo.getTemperature();
 	    int rainTwo = stationTwo.getRain();
+	    int identityTwo = stationTwo.getIdentity();
+	    int countTwo = stationTwo.getCount();
 	    
-    	return new Weather(idTwo, availableTwo, countTwo, temperatureTwo, rainTwo);
+    	return new Weather(idTwo, statusTwo, temperatureTwo, rainTwo, identityTwo, countTwo);
     	//IF SERVICE NOT AVAILABLE RETURN EMPTY JSON
 		} catch (Exception e) {
 		    e.printStackTrace();
-		    return new Weather(2,"Unavailable",0,0,0);
+		    return new Weather(2,"Unavailable",0,0,0,0);
 		} 
 	}
-		
+	
 	//CONSUME AND REPORDUCE DATA FROM WEATHER STATION TWO
 	@RequestMapping( 
 			method = RequestMethod.GET,
@@ -77,20 +79,22 @@ public class WeatherCollector {
 	public Weather weatherThree() throws Exception {
 		try {
 		RestTemplate restTemplate = new RestTemplate();
-		Weather stationThree = restTemplate.getForObject("http://192.168.99.100:30003/", Weather.class);
+		Weather stationThree = restTemplate.getForObject("http://35.188.76.15:8003/", Weather.class);
 
 	    int idThree = stationThree.getStationId();
-	    String availableThree = stationThree.getAvailable();
-	    int countThree = stationThree.getCount();
+	    String statusThree = stationThree.getStatus();
 	    int temperatureThree = stationThree.getTemperature();
 	    int rainThree = stationThree.getRain();
+	    int identityThree = stationThree.getIdentity();
+	    int countThree = stationThree.getCount();
 	    
-    	return new Weather(idThree, availableThree, countThree, temperatureThree, rainThree);
+    	return new Weather(idThree, statusThree, temperatureThree, rainThree, identityThree, countThree);
     	//IF SERVICE NOT AVAILABLE RETURN EMPTY JSON
 		} catch (Exception e) {
 		    e.printStackTrace();
-		    return new Weather(3,"Unavailable",0,0,0);
+		    return new Weather(3,"Unavailable",0,0,0,0);
 		} 
 	}
+	
 		
 }

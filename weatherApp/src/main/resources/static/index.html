@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Weather Service</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-</head>
-<body>
-	<div class="container">
-		<div class="card">
-			<div class="card-block">
-				<h2 class="card-title">List of Weather Stations</h2>
-				<table class="table table-striped displayWeather" >
-					<tr>
-						<th>Station#</th>
-						<th>Status</th>
-						<th>Count</th>
-						<th>Temperature(F)</th>
-						<th>Chance of rain(%)</th>
-					</th>
-				</table>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>Weather Service</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	
+	<style>
+		body {background-color: #4d4d4d;}
+		.card {margin-top: 30px; border-radius: 0px; border: solid 1px #ddd;}
+	</style>
+	
+	</head>
+	
+	<body>
+	
+		<div class="container">
+			<div class="card">
+				<div class="card-block">
+					<h2 class="card-title">List of Weather Stations</h2>
+					<table class="table table-striped displayWeather" >
+						<tr>
+							<th>Station#</th>
+							<th>Temperature(F)</th>
+							<th>Chance of rain(%)</th>
+							<th>Status</th>
+							<th>Identity</th>
+							<th>Count</th>
+						</th>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		//GET JSON DATA FROM /WEATHER
-	    $.get("http://192.168.99.100:30101/weather", function(data) {
-			//ITERATE THROUGH DATA AND DISPLAY
-	        $.each(data, function(i, weather) {
-	            $(".displayWeather").append(
-	                "<tr><td>" + weather.stationId + "</td>" +
-	                "<td>" + weather.available + "</td>" +
-	                "<td>" + weather.count + "</td>" +
-	                "<td>" + weather.temperature + "</td>" +
-	                "<td>" + weather.rain + "</td></tr>");
-	        });
-	    });
-	});
-</script>
 	
-</body>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//GET JSON DATA FROM /WEATHER
+		    $.get("/weather", function(data) {
+				//ITERATE THROUGH DATA AND DISPLAY
+		        $.each(data, function(i, weather) {
+		            $(".displayWeather").append(
+		                "<tr><td>" + weather.stationId + "</td>" +
+		                "<td>" + weather.temperature + "</td>" +
+		                "<td>" + weather.rain + "</td>" +
+		                "<td>" + weather.status + "</td>" +
+		                "<td>" + weather.identity + "</td>" +
+		                "<td>" + weather.count + "</td></tr>");
+		        });
+		    });
+		});
+	</script>
+		
+	</body>
 </html>

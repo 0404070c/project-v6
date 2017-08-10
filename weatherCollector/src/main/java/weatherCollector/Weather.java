@@ -7,21 +7,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Weather {
 	@JsonProperty("stationId")
 	private int stationId;
-	@JsonProperty("available")
-	private String available;
-	@JsonProperty("count")
-	private int count;
+	@JsonProperty("status")
+	private String status;
 	@JsonProperty("temperature")
 	private int temperature;
 	@JsonProperty("rain")
 	private int rain;
+	@JsonProperty("identity")
+	private int identity;
+	@JsonProperty("count")
+	private int count;
 	
-	public Weather(int stationId, String available, int count, int temperature, int rain) {
+	public Weather(int stationId, String status, int temperature, int rain, int identity, int count) {
 		this.stationId = stationId;
-		this.available = available;
-		this.count = count;
+		this.status = status;
 		this.temperature = temperature;
 		this.rain = rain;
+		this.identity = identity;
+		this.count = count;
 	}
 	
 	public int getStationId() {
@@ -32,20 +35,12 @@ public class Weather {
 		this.stationId = stationId;
 	}
 
-	public String getAvailable() {
-		return available;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setAvailable(String available) {
-		this.available = available;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public int getTemperature() {
@@ -62,6 +57,22 @@ public class Weather {
 
 	public void setRain(int rain) {
 		this.rain = rain;
+	}
+	
+	public int getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(int identity) {
+		this.identity = identity;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 	public Weather(){

@@ -42,10 +42,30 @@ OTHER COMMANDS
 	rocker rm <CONTAINER>
 
 
-	kubectl create -f weatherstationone_deployment.yaml
-	kubectl create -f weatherstationone_service.yaml
+	kubectl create -f weatherapp_deployment.yaml
+	kubectl create -f weatherapp_service.yaml
+
+
+	1### IN DOCKER QUICKSTART TERMINAL
+	docker build -t weatherapp:latest .
+	2###
+	docker tag weatherapp:latest gcr.io/weather-176316/weatherapp:latest
+	3###
+	gcloud docker -- push gcr.io/weather-176316/weatherapp:latest
+	4### IN GOOGLE CLOUD SHELL
+	kubectl run weatherapp --image=gcr.io/weather-176316/weatherapp:latest --port=8080
+	5###
+	kubectl expose deployment weatherapp --type=LoadBalancer
+	6###
+	kubectl get service weatherapp
+	7###
+	kubectl scale deployment weatherapp --replicas 3
 	
-	kubectl create -f weathercollector_deployment.yaml
-	kubectl create -f weathercollector_service.yaml
+
+	WEATHERSTATIONONE: http://35.202.53.47:8001/
+	WEATHERSTATIONTWO: http://35.202.127.198:8002/
+	WEATHERSTATIONTHREE: http://35.188.76.15:8003/
+	WEATHERCOLLECTOR: http://35.192.230.250:8000
+	WEATHERAPP: http://35.193.192.238:8080/
 
 

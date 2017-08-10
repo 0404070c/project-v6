@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WeatherController {
 	
+	//SET STATION NUMBER AND WEATHER DETAILS
 	private int stationId = 3;
-	private String available = "Available";
-	private int count = 1;
+	private String status = "Available";
 	private int temperature = 110;
 	private int rain = 80;
 	
-	//private Random value = new Random(); 
-	//private int temperature = 0 + value.nextInt(100);
-	//private int rain = 0 + value.nextInt(100);
+	//CREATE RANDOM ID AND COUNT
+	private Random value = new Random(); 
+	private int identity = 1000000 + value.nextInt(9000000);
+	private int count = 1;
 
 	//GENERATE WEATHER JSON
 	@RequestMapping( 
@@ -28,7 +29,7 @@ public class WeatherController {
             value="/"
             )
 	public Weather weather() {
-        return new Weather(stationId, available, count++, temperature, rain);
+        return new Weather(stationId, status, temperature, rain, identity, count++);
     }
 
 }
