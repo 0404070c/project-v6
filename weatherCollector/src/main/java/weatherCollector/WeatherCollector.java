@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,7 @@ public class WeatherCollector {
 	@RequestMapping(value = "/weather", 
 			produces = { MediaType.APPLICATION_JSON_VALUE }, 
 			method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:8080")
 	@ResponseBody
 	public ResponseEntity<List<Weather>> weatherStations(ArrayList<String> message){
 		

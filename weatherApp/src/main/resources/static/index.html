@@ -39,7 +39,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//GET JSON DATA FROM /WEATHER
-		    $.get("/weather", function(data) {
+		    $.get("http://localhost:8000/weather", function(data) {
 				//ITERATE THROUGH DATA AND DISPLAY
 		        $.each(data, function(i, weather) {
 		            $(".displayWeather").append(
