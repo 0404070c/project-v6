@@ -31,6 +31,7 @@
 							<th>Count</th>
 						</th>
 					</table>
+					<p class="status"></p>
 				</div>
 			</div>
 		</div>
@@ -40,7 +41,9 @@
 		$(document).ready(function() {
 			//GET JSON DATA FROM /WEATHER
 		    $.get("http://localhost:8000/weather", function(data) {
-				//ITERATE THROUGH DATA AND DISPLAY
+		    	//CHECK TO SEE IF WEATHERCOLLECTOR SERVICE IS AVAILABLE
+				if (data != null) {
+				//ITERATE THROUGH DATA AND DISPLAY STATUS MESSAGE
 		        $.each(data, function(i, weather) {
 		            $(".displayWeather").append(
 		                "<tr><td>" + weather.stationId + "</td>" +
@@ -49,7 +52,11 @@
 		                "<td>" + weather.status + "</td>" +
 		                "<td>" + weather.identity + "</td>" +
 		                "<td>" + weather.count + "</td></tr>");
-		        });
+		        })
+		        $(".status").append("The weather collector service is running.")
+		        } else {
+		        $(".status").append("The weather collector service is unavailable.")
+		        };
 		    });
 		});
 	</script>
