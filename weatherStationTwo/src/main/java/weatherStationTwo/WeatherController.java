@@ -2,7 +2,9 @@ package weatherStationTwo;
 
 import java.util.Random;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +25,14 @@ public class WeatherController {
 	private int count = 1;
 
 	//GENERATE WEATHER JSON
-	@RequestMapping( 
-			method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            value="/"
-            )
-	public Weather weather() {
-        return new Weather(stationId, status, temperature, rain, identity, count++);
-    }
+		@RequestMapping( 
+				method = RequestMethod.GET,
+	            produces = MediaType.APPLICATION_JSON_VALUE,
+	            value="/"
+	            )
+		public ResponseEntity<Weather> weather(){
+	        Weather weather = new Weather(stationId, status, temperature, rain, identity, count++);
+	        return new ResponseEntity<Weather>(weather, HttpStatus.OK);
+	    }
 
 }

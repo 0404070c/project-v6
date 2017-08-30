@@ -19,6 +19,7 @@ import weatherCollector.Weather;
 public class WeatherCollector {
 	
 	//STANDARD MESSAGE
+	@CrossOrigin
 	@RequestMapping(
 			method = RequestMethod.GET,
             value="/")
@@ -27,11 +28,10 @@ public class WeatherCollector {
 	}
 	
 	//COLLECT DATA FROM ALL WEATHER STATIONS AND ADD TO ARRAYLIST
+	@CrossOrigin
 	@RequestMapping(value = "/weather", 
 			produces = { MediaType.APPLICATION_JSON_VALUE }, 
 			method = RequestMethod.GET)
-	//TO ALLOW CROSS ORIGIN REQUESTS ***CHANGE TO "http://localhost:8080" TO RUN LOCALLY
-	@CrossOrigin(origins = "http://localhost:8080")
 	@ResponseBody
 	public ResponseEntity<List<Weather>> weatherStations(ArrayList<String> message){
 		
@@ -72,6 +72,5 @@ public class WeatherCollector {
 		}
 		//RETURN COLLECTED JSON.
 		return new ResponseEntity<List<Weather>>(collection, HttpStatus.OK);
-	}
-			
+	}	
 }
